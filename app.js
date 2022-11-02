@@ -19,18 +19,22 @@ const contactContent="Get In Touch.If you love reading as much I do.If you love 
 
 
 app.get("/",function(req,res){
-  res.render("home",{ homeContent: homeStartingContent });
+  res.render("home",{ startingHome: homeStartingContent });
 });
 
 app.get("/about",function(req,res){
-    console.log("1");
-    res.render("header",{ aboutStaringContent : aboutContent});
+    res.render("about",{  startingAbout : aboutContent });
+
 });
 
-app.post("/about",function(req,res){
-    console.log("2");
-    res.redirect("/about");
-});
+app.get("/contact",function(req,res){
+    res.render("contact",{ startingContact: contactContent });
+  });
+
+// app.post("/about",function(req,res){
+//     console.log("3");
+//     res.redirect("/about");
+// });
 
 
 app.listen(3000,function(){
