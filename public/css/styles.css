@@ -1,6 +1,6 @@
 body{
-    align-items: center;
-    text-align: center; 
+    /* align-items: center;
+    text-align: center;  */
     background-image: linear-gradient(to top,pink,darkseagreen);
     min-height: 1000px;
     font-family: fantasy;
@@ -26,6 +26,48 @@ body{
 .navbar-nav  li a:hover {
     color: #1abc9c !important;
 }
+
+form{
+    margin-top: 20px;
+    text-align: left;
+}
+
+.form-group{
+   margin: 10px;
+}
+
+label{
+    font-weight: bolder;
+}
+
+.btn {
+    background: mediumseagreen;
+    background-image: -webkit-linear-gradient(top, mediumseagreen, #1abc9c );
+    background-image: -moz-linear-gradient(top, mediumseagreen, #1abc9c );
+    background-image: -ms-linear-gradient(top, mediumseagreen, #1abc9c );
+    background-image: -o-linear-gradient(top, mediumseagreen, #1abc9c );
+    background-image: linear-gradient(to bottom, mediumseagreen, #1abc9c );
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 10px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    margin: 10px;
+  }
+  
+  .btn:hover {
+    background: darkseagreen;
+    background-image: -webkit-linear-gradient(top, darkseagreen, seagreen);
+    background-image: -moz-linear-gradient(top, darkseagreen, seagreen);
+    background-image: -ms-linear-gradient(top, darkseagreen, seagreen);
+    background-image: -o-linear-gradient(top, darkseagreen, seagreen);
+    background-image: linear-gradient(to bottom, darkseagreen, seagreen);
+    text-decoration: none;
+  }
+
 
 .footer-padding {
 	padding-bottom:60px;
