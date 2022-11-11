@@ -3,7 +3,7 @@
 const express= require("express");
 const bodyParser = require("body-parser");
 const ejs= require("ejs");
-
+const _ = require("lodash");
 
 
 const app=express(); //creates app using ejs
@@ -19,7 +19,10 @@ const contactContent="Get In Touch.If you love reading as much I do.If you love 
 let posts=[];
 
 app.get("/",function(req,res){
-  res.render("home",{ startingHome: homeStartingContent,posts : posts });
+  res.render("home",{ 
+    startingHome: homeStartingContent,
+    posts : posts 
+  });
   
 });
 
@@ -42,30 +45,26 @@ var post={  //const used for not changing it
    title   : req.body.contentTitle,
    content : req.body.contentBody
 };
-
 posts.push(post);
 res.redirect("/");
 });
 
-
 app.get("/posts/:postName" , function(req,res){
-   const requestedTitle= req.params.postName;
-   
+   const requestedTitle = req.params.postName;
 
    posts.forEach(function(post){
-
     const storedTitle = post.title;
-   
-    if( storedTitle === requestedTitle ){
-      console.log("Not Matched!");
-    }
-     else{
-         console.log("Match Found!");
-     }
      
+    if( storedTitle === requestedTitle){
+       res.render("post" ,
+       { 
+        title : post.title,
+        content:post.content 
+      });
+    }
    });
-
  });
+
 
 
 app.listen(3000,function(){

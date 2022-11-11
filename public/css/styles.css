@@ -1,9 +1,11 @@
 body{
     /* align-items: center;
     text-align: center;  */
-    background-image: linear-gradient(to top,pink,darkseagreen);
+    background-image: linear-gradient(to top,pink,darkseagreen );
     min-height: 1000px;
     font-family: fantasy;
+    
+    
 }
 .container-fluid {
     padding-top: 70px;
