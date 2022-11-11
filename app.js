@@ -50,10 +50,10 @@ res.redirect("/");
 });
 
 app.get("/posts/:postName" , function(req,res){
-   const requestedTitle = req.params.postName;
+   const requestedTitle = _.lowerCase(req.params.postName);
 
    posts.forEach(function(post){
-    const storedTitle = post.title;
+    const storedTitle = _.lowerCase(post.title);
      
     if( storedTitle === requestedTitle){
        res.render("post" ,
