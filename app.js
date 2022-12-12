@@ -17,7 +17,7 @@ const homeStartingContent="I'm a Web Developer.I ❤️ painting and travelling"
 const aboutContent="I'm from Bangladesh and completed gradutation from Computer Science & Engineering of The University of Rajshahi.Over the time,I have gained a growing of experience designing and developing web applications."
 
 const contactContent="Get In Touch.If you love reading as much I do.If you love reading as much I do? Let's talk about coding & some books!.My Email: rimtycse@email.com"
-let posts=[];
+
 
 const postSchema= mongoose.Schema({
     title: String,
@@ -25,7 +25,7 @@ const postSchema= mongoose.Schema({
  }); 
  //schema model
  const Post =mongoose.model("Post",postSchema);
-
+ let posts=[];
 
 app.get("/",function(req,res){
   res.render("home",{ 
@@ -57,14 +57,9 @@ app.post("/compose", function(req,res){
     content : req.body.postBody
   });
 
-// Post.findOne({ postTitle:title,postContent:content },function(eror,foundPost){
-//   if(!error){
-//     if(foundPost){
 
-//     }
-//   }
-// });
 //posts.push(post);
+//post.save();
 res.redirect("/");
 });
 
