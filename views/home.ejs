@@ -4,7 +4,7 @@
 <h1>Home</h1>
 <p><%= startingHome %></p>
 
-<div id="Read-More">
+
   <% posts.forEach( function(post){  %>
     <h1> <%= post.title %> </h1>
     <p> <%= post.content.substring(0,100)+ "..." %> 
@@ -12,7 +12,6 @@
     </p>
   
   <% }); %>
-</div>
 
 
 

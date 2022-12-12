@@ -4,7 +4,8 @@ const express= require("express");
 const bodyParser = require("body-parser");
 const ejs= require("ejs");
 const _ = require("lodash");
-
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/Travel-JournalDB',{useNewUrlParser: true});
 
 const app=express(); //creates app using ejs
 app.set("view engine","ejs");
@@ -17,6 +18,12 @@ const aboutContent="I'm from Bangladesh and completed gradutation from Computer 
 
 const contactContent="Get In Touch.If you love reading as much I do.If you love reading as much I do? Let's talk about coding & some books!.My Email: rimtycse@email.com"
 let posts=[];
+
+const postsSchema= mongoose.Schema({
+  title: String,
+  post: String
+ }); 
+ 
 
 app.get("/",function(req,res){
   res.render("home",{ 
@@ -67,6 +74,6 @@ app.get("/posts/:postName" , function(req,res){
 
 
 
-app.listen(3000,function(){
+app.listen(8000,function(){
     console.log("Server is running on port 3000");
 });
