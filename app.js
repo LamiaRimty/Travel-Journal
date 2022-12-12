@@ -19,11 +19,13 @@ const aboutContent="I'm from Bangladesh and completed gradutation from Computer 
 const contactContent="Get In Touch.If you love reading as much I do.If you love reading as much I do? Let's talk about coding & some books!.My Email: rimtycse@email.com"
 let posts=[];
 
-const postsSchema= mongoose.Schema({
-  title: String,
-  post: String
+const postSchema= mongoose.Schema({
+    title: String,
+    content: String
  }); 
- 
+ //schema model
+ const Post =mongoose.model("Post",postSchema);
+
 
 app.get("/",function(req,res){
   res.render("home",{ 
@@ -42,17 +44,27 @@ app.get("/contact",function(req,res){
     res.render("contact",{ startingContact: contactContent });
   });
 
+  
+
   app.get("/compose",function(req,res){
     res.render("compose");
   }); 
 
 app.post("/compose", function(req,res){
 
-var post={  //const used for not changing it
-   title   : req.body.contentTitle,
-   content : req.body.contentBody
-};
-posts.push(post);
+  const post = new Post({
+    title   : req.body.postTitle,//const used for not changing it
+    content : req.body.postBody
+  });
+
+// Post.findOne({ postTitle:title,postContent:content },function(eror,foundPost){
+//   if(!error){
+//     if(foundPost){
+
+//     }
+//   }
+// });
+//posts.push(post);
 res.redirect("/");
 });
 
@@ -75,5 +87,5 @@ app.get("/posts/:postName" , function(req,res){
 
 
 app.listen(8000,function(){
-    console.log("Server is running on port 3000");
+    console.log("Server is running on port 8000");
 });
