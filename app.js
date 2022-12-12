@@ -47,7 +47,14 @@ app.get("/contact",function(req,res){
   
 
   app.get("/compose",function(req,res){
-    res.render("compose");
+
+    Post.find({},function(err,foundPost){
+      res.render("home",{ 
+        startingHome: homeStartingContent,
+        posts : foundPost
+      });
+    });
+    
   }); 
 
 app.post("/compose", function(req,res){
@@ -59,7 +66,7 @@ app.post("/compose", function(req,res){
 
 
 //posts.push(post);
-//post.save();
+post.save();
 res.redirect("/");
 });
 
