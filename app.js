@@ -25,14 +25,15 @@ const postSchema= mongoose.Schema({
  }); 
  //schema model
  const Post =mongoose.model("Post",postSchema);
- let posts=[];
+ //let posts=[];
 
 app.get("/",function(req,res){
-  res.render("home",{ 
-    startingHome: homeStartingContent,
-    posts : posts 
+  Post.find({},function(err,posts){
+    res.render("home",{ 
+      startingHome: homeStartingContent,
+      posts : posts 
+    });
   });
-  
 });
 
 app.get("/about",function(req,res){
@@ -47,14 +48,7 @@ app.get("/contact",function(req,res){
   
 
   app.get("/compose",function(req,res){
-
-    Post.find({},function(err,foundPost){
-      res.render("home",{ 
-        startingHome: homeStartingContent,
-        posts : foundPost
-      });
-    });
-    
+    res.render("compose");
   }); 
 
 app.post("/compose", function(req,res){
