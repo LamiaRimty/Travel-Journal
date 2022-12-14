@@ -25,7 +25,7 @@ const postSchema= mongoose.Schema({
  }); 
  //schema model
  const Post =mongoose.model("Post",postSchema);
- //let posts=[];
+
 
 app.get("/",function(req,res){
   Post.find({},function(err,posts){
@@ -36,6 +36,52 @@ app.get("/",function(req,res){
   });
 });
 
+app.get("/compose",function(req,res){
+  res.render("compose");
+}); 
+
+app.post("/compose", function(req,res){
+
+const post = new Post({
+  title   : req.body.postTitle,//const used for not changing it
+  content : req.body.postBody
+});
+
+post.save(function(err){
+  if(!err){
+    console.log("Blog posted successfully!");
+    res.redirect("/");
+  }
+});
+
+});
+
+app.get("/posts/:postId" , function(req,res){
+
+  const requestedPostId= req.params.postId;
+
+  Post.findOne({_id: requestedPostId},function(err,post){
+    res.render("post",{
+      title  :   post.title,
+      content:   post.content
+    });
+  });
+});
+
+Post.deleteOne({_id:"6398530f6d0973f4f8718a37" } ,function(err){
+  if(err){
+    console.log(err);
+  }
+
+  else{
+    console.log("Succesfully deleted document");
+  }
+});
+
+
+
+
+
 app.get("/about",function(req,res){
 res.render("about",{  startingAbout : aboutContent });
 
@@ -44,44 +90,8 @@ res.render("about",{  startingAbout : aboutContent });
 app.get("/contact",function(req,res){
     res.render("contact",{ startingContact: contactContent });
   });
-
   
-
-  app.get("/compose",function(req,res){
-    res.render("compose");
-  }); 
-
-app.post("/compose", function(req,res){
-
-  const post = new Post({
-    title   : req.body.postTitle,//const used for not changing it
-    content : req.body.postBody
-  });
-
-
-//posts.push(post);
-post.save();
-res.redirect("/");
-});
-
-app.get("/posts/:postName" , function(req,res){
-   const requestedTitle = _.lowerCase(req.params.postName);
-
-   posts.forEach(function(post){
-    const storedTitle = _.lowerCase(post.title);
-     
-    if( storedTitle === requestedTitle){
-       res.render("post" ,
-       { 
-        title : post.title,
-        content:post.content 
-      });
-    }
-   });
- });
-
-
-
 app.listen(8000,function(){
     console.log("Server is running on port 8000");
 });
+
